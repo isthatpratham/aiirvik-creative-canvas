@@ -1,0 +1,365 @@
+import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { ExternalLink, Github, Instagram, Play, Code, Palette, Video, Shirt, Award, Heart, Clock } from "lucide-react"
+import { useState } from "react"
+
+const categories = ["All", "Web Development", "Graphic Design", "Video Editing", "T-shirt Design"]
+
+const projects = [
+  {
+    id: 1,
+    title: "Chess Game with AI",
+    description: "Interactive chess game with intelligent AI opponent featuring modern UI and smooth gameplay mechanics.",
+    category: "Web Development",
+    author: "Pratham Debnath",
+    image: "/placeholder-chess.jpg",
+    technologies: ["React", "JavaScript", "CSS3", "AI Algorithm"],
+    links: {
+      github: "https://github.com/isthatpratham/chess_game_ai",
+      live: "#"
+    },
+    icon: Code
+  },
+  {
+    id: 2,
+    title: "Event Management System",
+    description: "Comprehensive college event management system with user authentication, admin panel, and real-time updates.",
+    category: "Web Development",
+    author: "Pratham Debnath & Prashanjeet Dutta",
+    image: "/placeholder-event.jpg",
+    technologies: ["React", "Node.js", "MongoDB", "Express"],
+    links: {
+      github: "https://github.com/isthatpratham/event_ms",
+      live: "#"
+    },
+    icon: Code
+  },
+  {
+    id: 3,
+    title: "Custom Vector Art Collection",
+    description: "A series of detailed vector illustrations showcasing various artistic styles and techniques.",
+    category: "Graphic Design",
+    author: "Prashanjeet Dutta",
+    image: "/placeholder-vector.jpg",
+    technologies: ["Adobe Illustrator", "Vector Art", "Digital Design"],
+    links: {
+      instagram: "https://www.instagram.com/artiivik/",
+      behance: "#"
+    },
+    icon: Palette
+  },
+  {
+    id: 4,
+    title: "Brand Identity Package",
+    description: "Complete branding solution including logo design, color palette, and brand guidelines for a tech startup.",
+    category: "Graphic Design",
+    author: "Prashanjeet Dutta",
+    image: "/placeholder-brand.jpg",
+    technologies: ["Adobe Illustrator", "Photoshop", "Branding"],
+    links: {
+      instagram: "https://www.instagram.com/artiivik/",
+      portfolio: "#"
+    },
+    icon: Palette
+  },
+  {
+    id: 5,
+    title: "Corporate Video Production",
+    description: "Professional corporate video with motion graphics, animations, and cinematic color grading.",
+    category: "Video Editing",
+    author: "Pratham Debnath",
+    image: "/placeholder-video.jpg",
+    technologies: ["Premiere Pro", "After Effects", "Motion Graphics"],
+    links: {
+      youtube: "#",
+      instagram: "https://www.instagram.com/aiir.vis/"
+    },
+    icon: Video
+  },
+  {
+    id: 6,
+    title: "Apparel Design Collection",
+    description: "Custom t-shirt designs featuring unique graphics and typography for fashion brand merchandise.",
+    category: "T-shirt Design",
+    author: "Prashanjeet Dutta",
+    image: "/placeholder-tshirt.jpg",
+    technologies: ["Illustrator", "Photoshop", "Print Design"],
+    links: {
+      instagram: "https://www.instagram.com/artiivik/",
+      shop: "#"
+    },
+    icon: Shirt
+  }
+]
+
+export default function Portfolio() {
+  const [activeCategory, setActiveCategory] = useState("All")
+
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(project => project.category === activeCategory)
+
+  return (
+    <div className="pt-16">
+      {/* Hero Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/20 via-background to-neon-purple/20" />
+        
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <h1 className="font-heading font-bold text-4xl md:text-6xl">
+              Our <span className="bg-gradient-to-r from-electric-blue to-neon-purple bg-clip-text text-transparent">Portfolio</span>
+            </h1>
+            
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore our curated collection of projects showcasing creativity, technical expertise, 
+              and innovative solutions across different creative disciplines.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Category Filter */}
+      <section className="py-8 bg-card">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={activeCategory === category ? "default" : "outline"}
+                onClick={() => setActiveCategory(category)}
+                className={`transition-all duration-300 ${
+                  activeCategory === category 
+                    ? "bg-gradient-to-r from-electric-blue to-neon-purple text-white" 
+                    : "hover:border-primary hover:text-primary"
+                }`}
+              >
+                {category}
+              </Button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+              >
+                <Card className="group overflow-hidden hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 h-full">
+                  {/* Project Image */}
+                  <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center space-y-2">
+                        <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
+                          <project.icon className="h-8 w-8 text-primary" />
+                        </div>
+                        <p className="text-sm text-muted-foreground">Project Preview</p>
+                      </div>
+                    </div>
+                    
+                    {/* Overlay with links */}
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="flex space-x-3">
+                        {project.links.github && (
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            asChild
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
+                          >
+                            <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                              <Github size={16} />
+                            </a>
+                          </Button>
+                        )}
+                        {project.links.live && (
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            asChild
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
+                          >
+                            <a href={project.links.live} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink size={16} />
+                            </a>
+                          </Button>
+                        )}
+                        {project.links.instagram && (
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            asChild
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
+                          >
+                            <a href={project.links.instagram} target="_blank" rel="noopener noreferrer">
+                              <Instagram size={16} />
+                            </a>
+                          </Button>
+                        )}
+                        {project.links.youtube && (
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            asChild
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
+                          >
+                            <a href={project.links.youtube} target="_blank" rel="noopener noreferrer">
+                              <Play size={16} />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <CardContent className="p-6 space-y-4">
+                    {/* Project Header */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-start">
+                        <h3 className="font-heading font-semibold text-lg leading-tight">{project.title}</h3>
+                        <Badge variant="secondary" className="text-xs flex-shrink-0 ml-2">
+                          {project.category}
+                        </Badge>
+                      </div>
+                      <p className="text-muted-foreground text-sm">{project.description}</p>
+                    </div>
+
+                    {/* Technologies */}
+                    <div className="space-y-2">
+                      <h4 className="font-medium text-sm">Technologies:</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {project.technologies.map((tech) => (
+                          <Badge key={tech} variant="outline" className="text-xs">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Author */}
+                    <div className="pt-2 border-t border-border">
+                      <p className="text-xs text-muted-foreground">
+                        Created by <span className="text-primary font-medium">{project.author}</span>
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Empty State */}
+          {filteredProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <div className="w-16 h-16 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
+                <Palette className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="font-heading font-semibold text-xl mb-2">No projects found</h3>
+              <p className="text-muted-foreground">Try selecting a different category.</p>
+            </motion.div>
+          )}
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-24 bg-card">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-heading font-bold text-3xl md:text-4xl mb-4">Our Impact</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Numbers that reflect our commitment to delivering exceptional creative solutions.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: "50+", label: "Projects Completed", icon: Code },
+              { number: "3+", label: "Years Experience", icon: Award },
+              { number: "100%", label: "Client Satisfaction", icon: Heart },
+              { number: "24/7", label: "Support Available", icon: Clock }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="text-center space-y-4"
+              >
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                  <stat.icon className="h-8 w-8 text-white" />
+                </div>
+                <div className="space-y-1">
+                  <div className="font-heading font-bold text-3xl text-primary">{stat.number}</div>
+                  <div className="text-muted-foreground text-sm">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/10 via-neon-purple/10 to-sunset-orange/10" />
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <h2 className="font-heading font-bold text-3xl md:text-4xl">
+              Like What You See?
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Let's create something amazing together. Get in touch to discuss your project 
+              and see how we can bring your vision to life.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-electric-blue to-neon-purple hover:opacity-90 transition-all duration-300 text-white font-semibold px-12 py-6 rounded-full"
+            >
+              <a href="/contact">
+                Start Your Project
+                <ExternalLink className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  )
+}
