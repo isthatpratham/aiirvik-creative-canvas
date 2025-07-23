@@ -4,36 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Link } from "react-router-dom"
 import heroBackground from "@/assets/hero-background.jpg"
+import prathamProfile from "@/assets/pratham-profile.jpg"
+import prashanjeetProfile from "@/assets/prashanjeet-profile.jpg"
+import { projects as portfolioProjects } from "./Portfolio"
 
 const services = [
   { icon: Video, title: "Video Editing", description: "Professional video editing and motion graphics" },
   { icon: Palette, title: "Graphic Design", description: "Creative designs that tell your story" },
   { icon: Code, title: "Web Development", description: "Full-stack web applications and websites" },
   { icon: Shirt, title: "T-shirt Design", description: "Custom apparel and merchandise design" },
-]
-
-const featuredWorks = [
-  {
-    title: "Chess Game with AI",
-    description: "Interactive chess game with AI opponent",
-    image: "/placeholder-chess.jpg",
-    category: "Web Development",
-    author: "Pratham Debnath"
-  },
-  {
-    title: "Custom Vector Art",
-    description: "Digital illustration and vector artwork",
-    image: "/placeholder-art.jpg",
-    category: "Graphic Design",
-    author: "Prashanjeet Dutta"
-  },
-  {
-    title: "Brand Identity Design",
-    description: "Complete branding solution with logo design",
-    image: "/placeholder-brand.jpg",
-    category: "Branding",
-    author: "Prashanjeet Dutta"
-  }
 ]
 
 export default function Home() {
@@ -131,9 +110,13 @@ export default function Home() {
             >
               <div className="relative">
                 <div className="w-32 h-32 mx-auto bg-gradient-to-br from-electric-blue to-neon-purple rounded-full flex items-center justify-center">
-                  <div className="w-28 h-28 bg-background rounded-full flex items-center justify-center">
-                    <Code className="h-12 w-12 text-primary" />
-                  </div>
+                  <img
+                    src={prathamProfile}
+                    alt="Pratham Debnath"
+                    className="w-28 h-28 rounded-full object-cover bg-background border-4 border-white/20"
+                    onContextMenu={e => e.preventDefault()}
+                    draggable={false}
+                  />
                 </div>
               </div>
               <div className="text-center">
@@ -154,9 +137,13 @@ export default function Home() {
             >
               <div className="relative">
                 <div className="w-32 h-32 mx-auto bg-gradient-to-br from-neon-purple to-sunset-orange rounded-full flex items-center justify-center">
-                  <div className="w-28 h-28 bg-background rounded-full flex items-center justify-center">
-                    <Palette className="h-12 w-12 text-accent" />
-                  </div>
+                  <img
+                    src={prashanjeetProfile}
+                    alt="Prashanjeet Dutta"
+                    className="w-28 h-28 rounded-full object-cover bg-background border-4 border-white/20"
+                    onContextMenu={e => e.preventDefault()}
+                    draggable={false}
+                  />
                 </div>
               </div>
               <div className="text-center">
@@ -210,7 +197,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Works */}
+      {/* Featured Works Section */}
       <section className="py-24 bg-card">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
@@ -226,37 +213,57 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredWorks.map((work, index) => (
-              <motion.div
-                key={work.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-              >
-                <Card className="group overflow-hidden hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
-                  <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center space-y-2">
-                        <div className="w-12 h-12 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
-                          <Code className="h-6 w-6 text-primary" />
+            {portfolioProjects.slice(0, 3).map((work, index) => {
+              const isWebDevWithGithub = work.category === "Web Development" && work.links?.github;
+              const cardProps = isWebDevWithGithub
+                ? {
+                    onClick: () => window.open(work.links.github, "_blank"),
+                    style: { cursor: "pointer" },
+                    className: "overflow-hidden group hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 border-border hover:border-primary/50 ring-2 ring-transparent hover:ring-primary/40"
+                  }
+                : { className: "overflow-hidden" };
+              return (
+                <motion.div
+                  key={work.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                >
+                  <Card {...cardProps}>
+                    <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden">
+                      {work.image ? (
+                        <img
+                          src={work.image}
+                          alt={work.title}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          onContextMenu={e => e.preventDefault()}
+                          draggable={false}
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="text-center space-y-2">
+                            <div className="w-12 h-12 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
+                              <work.icon className="h-6 w-6 text-primary" />
+                            </div>
+                            <p className="text-sm text-muted-foreground">Preview</p>
+                          </div>
                         </div>
-                        <p className="text-sm text-muted-foreground">Preview Image</p>
+                      )}
+                    </div>
+                    <CardContent className="p-6 space-y-3">
+                      <div className="flex justify-between items-start">
+                        <h3 className="font-heading font-semibold text-lg">{work.title}</h3>
+                        <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                          {work.category}
+                        </span>
                       </div>
-                    </div>
-                  </div>
-                  <CardContent className="p-6 space-y-3">
-                    <div className="flex justify-between items-start">
-                      <h3 className="font-heading font-semibold text-lg">{work.title}</h3>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                        {work.category}
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground text-sm">{work.description}</p>
-                    <p className="text-xs text-accent">by {work.author}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <p className="text-muted-foreground text-sm">{work.description}</p>
+                      <p className="text-xs text-accent">by {work.author}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
 
           <motion.div

@@ -36,11 +36,6 @@ export default function Profiles() {
         <DialogContent className="max-w-5xl w-full h-[90vh] p-0 flex flex-col">
           <DialogHeader className="p-4 flex flex-row items-center justify-between border-b shrink-0">
             <DialogTitle>Resume Viewer</DialogTitle>
-            <DialogClose asChild>
-              <Button variant="ghost" size="icon">
-                <X className="h-4 w-4" />
-              </Button>
-            </DialogClose>
           </DialogHeader>
           <div className="flex-grow">
             <iframe
@@ -134,7 +129,7 @@ export default function Profiles() {
                         className="w-full"
                         asChild
                       >
-                        <a href={prathamResumeUrl} download>
+                        <a href="/resumes/pratham-resume.pdf" download>
                           <Download size={16} className="mr-2" />
                           Download Resume
                         </a>
