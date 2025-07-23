@@ -5,6 +5,20 @@ import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, Instagram, Play, Code, Palette, Video, Shirt, Award, Heart, Clock } from "lucide-react"
 import { useState } from "react"
 
+// Import assets
+import gd1 from "@/assets/gd1.jpg"
+import gd2 from "@/assets/gd2.jpg"
+import gd3 from "@/assets/gd3.jpg"
+import gd4 from "@/assets/gd4.jpg"
+import gd5 from "@/assets/gd5.jpg"
+import tshirtDesign from "@/assets/tshirtwatermarked1.jpg"
+import video1 from "@/assets/1.mp4"
+import video2 from "@/assets/2.mp4"
+import video3 from "@/assets/3.mp4"
+import video4 from "@/assets/4.mp4"
+import video5 from "@/assets/5.mp4"
+import video6 from "@/assets/6.mp4"
+
 const categories = ["All", "Web Development", "Graphic Design", "Video Editing", "T-shirt Design"]
 
 const projects = [
@@ -38,57 +52,157 @@ const projects = [
   },
   {
     id: 3,
-    title: "Custom Vector Art Collection",
-    description: "A series of detailed vector illustrations showcasing various artistic styles and techniques.",
+    title: "Graphic Design Portfolio 1",
+    description: "Creative graphic design showcasing modern visual aesthetics and professional design principles.",
     category: "Graphic Design",
     author: "Prashanjeet Dutta",
-    image: "/placeholder-vector.jpg",
-    technologies: ["Adobe Illustrator", "Vector Art", "Digital Design"],
+    image: gd1,
+    technologies: ["Adobe Illustrator", "Photoshop", "Digital Design"],
     links: {
-      instagram: "https://www.instagram.com/artiivik/",
-      behance: "#"
+      instagram: "https://www.instagram.com/artiivik/"
     },
     icon: Palette
   },
   {
     id: 4,
-    title: "Brand Identity Package",
-    description: "Complete branding solution including logo design, color palette, and brand guidelines for a tech startup.",
+    title: "Graphic Design Portfolio 2",
+    description: "Innovative design concepts with attention to detail and contemporary visual elements.",
     category: "Graphic Design",
     author: "Prashanjeet Dutta",
-    image: "/placeholder-brand.jpg",
-    technologies: ["Adobe Illustrator", "Photoshop", "Branding"],
+    image: gd2,
+    technologies: ["Adobe Illustrator", "Photoshop", "Typography"],
     links: {
-      instagram: "https://www.instagram.com/artiivik/",
-      portfolio: "#"
+      instagram: "https://www.instagram.com/artiivik/"
     },
     icon: Palette
   },
   {
     id: 5,
-    title: "Corporate Video Production",
-    description: "Professional corporate video with motion graphics, animations, and cinematic color grading.",
+    title: "Graphic Design Portfolio 3",
+    description: "Professional branding and visual identity design with cohesive color schemes.",
+    category: "Graphic Design",
+    author: "Prashanjeet Dutta",
+    image: gd3,
+    technologies: ["Adobe Illustrator", "Branding", "Color Theory"],
+    links: {
+      instagram: "https://www.instagram.com/artiivik/"
+    },
+    icon: Palette
+  },
+  {
+    id: 6,
+    title: "Graphic Design Portfolio 4",
+    description: "Creative compositions featuring dynamic layouts and modern design trends.",
+    category: "Graphic Design",
+    author: "Prashanjeet Dutta",
+    image: gd4,
+    technologies: ["Adobe Illustrator", "Layout Design", "Visual Arts"],
+    links: {
+      instagram: "https://www.instagram.com/artiivik/"
+    },
+    icon: Palette
+  },
+  {
+    id: 7,
+    title: "Graphic Design Portfolio 5",
+    description: "Artistic designs combining traditional and digital techniques for unique visual impact.",
+    category: "Graphic Design",
+    author: "Prashanjeet Dutta",
+    image: gd5,
+    technologies: ["Adobe Illustrator", "Digital Art", "Mixed Media"],
+    links: {
+      instagram: "https://www.instagram.com/artiivik/"
+    },
+    icon: Palette
+  },
+  {
+    id: 8,
+    title: "Video Project 1",
+    description: "Professional video editing with smooth transitions and cinematic effects.",
     category: "Video Editing",
     author: "Pratham Debnath",
-    image: "/placeholder-video.jpg",
-    technologies: ["Premiere Pro", "After Effects", "Motion Graphics"],
+    video: video1,
+    technologies: ["Premiere Pro", "After Effects", "Color Grading"],
     links: {
-      youtube: "#",
       instagram: "https://www.instagram.com/aiir.vis/"
     },
     icon: Video
   },
   {
-    id: 6,
-    title: "Apparel Design Collection",
-    description: "Custom t-shirt designs featuring unique graphics and typography for fashion brand merchandise.",
+    id: 9,
+    title: "Video Project 2",
+    description: "Creative video production with motion graphics and dynamic visual storytelling.",
+    category: "Video Editing",
+    author: "Pratham Debnath",
+    video: video2,
+    technologies: ["Premiere Pro", "Motion Graphics", "Sound Design"],
+    links: {
+      instagram: "https://www.instagram.com/aiir.vis/"
+    },
+    icon: Video
+  },
+  {
+    id: 10,
+    title: "Video Project 3",
+    description: "High-quality video editing with professional color correction and effects.",
+    category: "Video Editing",
+    author: "Pratham Debnath",
+    video: video3,
+    technologies: ["Premiere Pro", "After Effects", "Visual Effects"],
+    links: {
+      instagram: "https://www.instagram.com/aiir.vis/"
+    },
+    icon: Video
+  },
+  {
+    id: 11,
+    title: "Video Project 4",
+    description: "Creative video composition with seamless editing and modern visual aesthetics.",
+    category: "Video Editing",
+    author: "Pratham Debnath",
+    video: video4,
+    technologies: ["Premiere Pro", "Color Grading", "Audio Mixing"],
+    links: {
+      instagram: "https://www.instagram.com/aiir.vis/"
+    },
+    icon: Video
+  },
+  {
+    id: 12,
+    title: "Video Project 5",
+    description: "Professional video production with cinematic quality and smooth workflow.",
+    category: "Video Editing",
+    author: "Pratham Debnath",
+    video: video5,
+    technologies: ["Premiere Pro", "After Effects", "Cinematography"],
+    links: {
+      instagram: "https://www.instagram.com/aiir.vis/"
+    },
+    icon: Video
+  },
+  {
+    id: 13,
+    title: "Video Project 6",
+    description: "Advanced video editing featuring complex transitions and visual storytelling.",
+    category: "Video Editing",
+    author: "Pratham Debnath",
+    video: video6,
+    technologies: ["Premiere Pro", "Advanced Effects", "Post Production"],
+    links: {
+      instagram: "https://www.instagram.com/aiir.vis/"
+    },
+    icon: Video
+  },
+  {
+    id: 14,
+    title: "Custom T-shirt Design",
+    description: "Unique t-shirt design featuring creative graphics and watermarked branding elements.",
     category: "T-shirt Design",
     author: "Prashanjeet Dutta",
-    image: "/placeholder-tshirt.jpg",
-    technologies: ["Illustrator", "Photoshop", "Print Design"],
+    image: tshirtDesign,
+    technologies: ["Illustrator", "Apparel Design", "Print Graphics"],
     links: {
-      instagram: "https://www.instagram.com/artiivik/",
-      shop: "#"
+      instagram: "https://www.instagram.com/artiivik/"
     },
     icon: Shirt
   }
@@ -169,16 +283,33 @@ export default function Portfolio() {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
                 <Card className="group overflow-hidden hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 h-full">
-                  {/* Project Image */}
+                  {/* Project Media */}
                   <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center space-y-2">
-                        <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
-                          <project.icon className="h-8 w-8 text-primary" />
+                    {project.video ? (
+                      <video 
+                        className="w-full h-full object-cover"
+                        controls
+                        preload="metadata"
+                      >
+                        <source src={project.video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : project.image ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center space-y-2">
+                          <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
+                            <project.icon className="h-8 w-8 text-primary" />
+                          </div>
+                          <p className="text-sm text-muted-foreground">Project Preview</p>
                         </div>
-                        <p className="text-sm text-muted-foreground">Project Preview</p>
                       </div>
-                    </div>
+                    )}
                     
                     {/* Overlay with links */}
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -216,18 +347,6 @@ export default function Portfolio() {
                           >
                             <a href={project.links.instagram} target="_blank" rel="noopener noreferrer">
                               <Instagram size={16} />
-                            </a>
-                          </Button>
-                        )}
-                        {project.links.youtube && (
-                          <Button
-                            size="sm"
-                            variant="secondary"
-                            asChild
-                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
-                          >
-                            <a href={project.links.youtube} target="_blank" rel="noopener noreferrer">
-                              <Play size={16} />
                             </a>
                           </Button>
                         )}
