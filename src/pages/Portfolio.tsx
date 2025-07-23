@@ -284,12 +284,13 @@ export default function Portfolio() {
               >
                 <Card className="group overflow-hidden hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 h-full">
                   {/* Project Media */}
-                  <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden">
+                  <div className={`${project.video ? 'aspect-video' : 'aspect-auto'} bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden rounded-t-lg`}>
                     {project.video ? (
                       <video 
                         className="w-full h-full object-cover"
                         controls
                         preload="metadata"
+                        muted
                       >
                         <source src={project.video} type="video/mp4" />
                         Your browser does not support the video tag.
@@ -298,7 +299,7 @@ export default function Portfolio() {
                       <img 
                         src={project.image} 
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto object-contain"
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -311,9 +312,10 @@ export default function Portfolio() {
                       </div>
                     )}
                     
-                    {/* Overlay with links */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="flex space-x-3">
+                    {/* Overlay with links - only show for Web Development projects */}
+                    {project.category === "Web Development" && (
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="flex space-x-3">
                         {project.links.github && (
                           <Button
                             size="sm"
@@ -338,20 +340,9 @@ export default function Portfolio() {
                             </a>
                           </Button>
                         )}
-                        {project.links.instagram && (
-                          <Button
-                            size="sm"
-                            variant="secondary"
-                            asChild
-                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
-                          >
-                            <a href={project.links.instagram} target="_blank" rel="noopener noreferrer">
-                              <Instagram size={16} />
-                            </a>
-                          </Button>
-                        )}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   <CardContent className="p-6 space-y-4">
