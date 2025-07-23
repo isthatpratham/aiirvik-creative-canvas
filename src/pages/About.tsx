@@ -1,6 +1,8 @@
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Award, Heart, Target, Users } from "lucide-react"
+import prathamProfile from "@/assets/pratham-profile.jpg"
+import prashanjeetProfile from "@/assets/prashanjeet-profile.jpg"
 
 export default function About() {
   return (
@@ -119,11 +121,14 @@ export default function About() {
                   { year: "June 2025", title: "Graduated BCA", desc: "Successfully completed Bachelor of Computer Applications" },
                   { year: "July 2025", title: "Started MCA", desc: "Pursuing MCA at SRM University, specializing in cybersecurity" },
                   { year: "July 2025", title: "Co-founded AiirVik", desc: "Partnered with Prashanjeet to create comprehensive digital solutions" }
-                ].map((milestone, index) => (
+                ].map((milestone, index, arr) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex flex-col items-center">
                       <div className="w-4 h-4 bg-primary rounded-full" />
-                      {index < 3 && <div className="w-0.5 h-16 bg-border mt-2" />}
+                      {/* Use bg-border for all connecting lines for consistency */}
+                      {index < arr.length - 1 && (
+                        <div className="w-0.5 h-16 bg-border mt-2" />
+                      )}
                     </div>
                     <div className="space-y-2 pb-8">
                       <div className="flex items-center gap-2">
@@ -151,15 +156,15 @@ export default function About() {
 
               <div className="space-y-6">
                 {[
-                  { year: "September 2022", title: "Started Freelance Journey", desc: "Began freelance graphic design work" },
                   { year: "August 2022", title: "Started BCA Journey", desc: "Enrolled in BCA program at DHSK College" },
+                  { year: "September 2022", title: "Started Freelance Journey", desc: "Began freelance graphic design work" },
                   { year: "June 2025", title: "Graduated BCA", desc: "Successfully completed Bachelor of Computer Applications" },
                   { year: "July 2025", title: "Co-founded AiirVik", desc: "Joined forces with Pratham to offer comprehensive creative solutions" }
-                ].map((milestone, index) => (
+                ].map((milestone, index, arr) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex flex-col items-center">
                       <div className="w-4 h-4 bg-accent rounded-full" />
-                      {index < 3 && <div className="w-0.5 h-16 bg-border mt-2" />}
+                      {index < arr.length - 1 && <div className="w-0.5 h-16 bg-border mt-2" />}
                     </div>
                     <div className="space-y-2 pb-8">
                       <div className="flex items-center gap-2">
@@ -189,7 +194,13 @@ export default function About() {
                 <CardContent className="p-8 space-y-6">
                   <div className="text-center">
                     <div className="w-20 h-20 mx-auto bg-gradient-to-br from-electric-blue to-primary rounded-full flex items-center justify-center mb-4">
-                      <span className="text-2xl font-bold text-white">P</span>
+                      <img
+                        src={prathamProfile}
+                        alt="Pratham Debnath"
+                        className="w-20 h-20 rounded-full object-cover border-4 border-white/20"
+                        onContextMenu={e => e.preventDefault()}
+                        draggable={false}
+                      />
                     </div>
                     <h3 className="font-heading font-bold text-xl">Pratham Debnath</h3>
                   </div>
@@ -211,7 +222,13 @@ export default function About() {
                 <CardContent className="p-8 space-y-6">
                   <div className="text-center">
                     <div className="w-20 h-20 mx-auto bg-gradient-to-br from-neon-purple to-accent rounded-full flex items-center justify-center mb-4">
-                      <span className="text-2xl font-bold text-white">P</span>
+                      <img
+                        src={prashanjeetProfile}
+                        alt="Prashanjeet Dutta"
+                        className="w-20 h-20 rounded-full object-cover border-4 border-white/20"
+                        onContextMenu={e => e.preventDefault()}
+                        draggable={false}
+                      />
                     </div>
                     <h3 className="font-heading font-bold text-xl">Prashanjeet Dutta</h3>
                   </div>

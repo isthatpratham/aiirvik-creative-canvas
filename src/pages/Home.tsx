@@ -7,6 +7,9 @@ import heroBackground from "@/assets/hero-background.jpg"
 import prathamProfile from "@/assets/pratham-profile.jpg"
 import prashanjeetProfile from "@/assets/prashanjeet-profile.jpg"
 import { projects as portfolioProjects } from "./Portfolio"
+import video1 from "@/assets/1.mp4"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { useState } from "react"
 
 const services = [
   { icon: Video, title: "Video Editing", description: "Professional video editing and motion graphics" },
@@ -16,6 +19,16 @@ const services = [
 ]
 
 export default function Home() {
+  // Select Chess Game with AI, Graphic Design Portfolio 1, and Video Project 1 for featured works
+  const featuredWorks = [
+    portfolioProjects.find(p => p.title === "Chess Game with AI"),
+    portfolioProjects.find(p => p.title === "Graphic Design Portfolio 1"),
+    portfolioProjects.find(p => p.title === "Video Project 1"),
+  ].filter(Boolean);
+
+  const [fullscreenVideoOpen, setFullscreenVideoOpen] = useState(false);
+  const [fullscreenImageOpen, setFullscreenImageOpen] = useState(false);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -213,11 +226,25 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {portfolioProjects.slice(0, 3).map((work, index) => {
+            {featuredWorks.map((work, index) => {
               const isWebDevWithGithub = work.category === "Web Development" && work.links?.github;
+              const isGraphicDesign1 = work.title === "Graphic Design Portfolio 1";
+              const isVideoProject1 = work.title === "Video Project 1";
               const cardProps = isWebDevWithGithub
                 ? {
                     onClick: () => window.open(work.links.github, "_blank"),
+                    style: { cursor: "pointer" },
+                    className: "overflow-hidden group hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 border-border hover:border-primary/50 ring-2 ring-transparent hover:ring-primary/40"
+                  }
+                : isGraphicDesign1
+                ? {
+                    onClick: () => setFullscreenImageOpen(true),
+                    style: { cursor: "pointer" },
+                    className: "overflow-hidden group hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 border-border hover:border-primary/50 ring-2 ring-transparent hover:ring-primary/40"
+                  }
+                : isVideoProject1
+                ? {
+                    onClick: () => setFullscreenVideoOpen(true),
                     style: { cursor: "pointer" },
                     className: "overflow-hidden group hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 border-border hover:border-primary/50 ring-2 ring-transparent hover:ring-primary/40"
                   }
@@ -231,11 +258,23 @@ export default function Home() {
                 >
                   <Card {...cardProps}>
                     <div className="aspect-video bg-gradient-to-br from-electric-blue/20 to-neon-purple/20 relative overflow-hidden">
-                      {work.image ? (
+                      {isVideoProject1 ? (
+                        <video
+                          src={video1}
+                          className="w-full h-full object-cover"
+                          controls={false}
+                          preload="metadata"
+                          muted
+                          playsInline
+                          onContextMenu={e => e.preventDefault()}
+                          controlsList="nodownload"
+                          draggable={false}
+                        />
+                      ) : work.image ? (
                         <img
                           src={work.image}
                           alt={work.title}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          className={`w-full h-full object-cover transition-transform duration-300 ${isGraphicDesign1 ? 'hover:scale-110' : 'group-hover:scale-105'}`}
                           onContextMenu={e => e.preventDefault()}
                           draggable={false}
                         />
@@ -265,17 +304,43 @@ export default function Home() {
               );
             })}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center mt-12"
-          >
-            <Button asChild variant="outline" size="lg">
-              <Link to="/portfolio">View All Projects</Link>
-            </Button>
-          </motion.div>
+          {/* Fullscreen Video Dialog for Video Project 1 */}
+          <Dialog open={fullscreenVideoOpen} onOpenChange={setFullscreenVideoOpen}>
+            <DialogContent className="max-w-5xl w-full h-[90vh] p-0 flex flex-col">
+              <DialogHeader className="p-4 flex flex-row items-center justify-between border-b shrink-0">
+                <DialogTitle>Video Project 1</DialogTitle>
+              </DialogHeader>
+              <div className="flex-grow flex items-center justify-center bg-black">
+                <video
+                  src={video1}
+                  className="w-full h-full max-h-[70vh] object-contain bg-black"
+                  controls
+                  autoPlay
+                  muted={false}
+                  onContextMenu={e => e.preventDefault()}
+                  controlsList="nodownload"
+                  draggable={false}
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
+          {/* Fullscreen Image Dialog for Graphic Design Portfolio 1 */}
+          <Dialog open={fullscreenImageOpen} onOpenChange={setFullscreenImageOpen}>
+            <DialogContent className="max-w-3xl w-full h-[90vh] p-0 flex flex-col">
+              <DialogHeader className="p-4 flex flex-row items-center justify-between border-b shrink-0">
+                <DialogTitle>Graphic Design Portfolio 1</DialogTitle>
+              </DialogHeader>
+              <div className="flex-grow flex items-center justify-center bg-black">
+                <img
+                  src={featuredWorks.find(w => w.title === "Graphic Design Portfolio 1").image}
+                  alt="Graphic Design Portfolio 1"
+                  className="max-h-[75vh] w-auto object-contain bg-black mx-auto"
+                  onContextMenu={e => e.preventDefault()}
+                  draggable={false}
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
 

@@ -7,9 +7,12 @@ import { Download, ExternalLink, Github, Instagram, Linkedin, GraduationCap, Awa
 import prathamProfile from "@/assets/pratham-profile.jpg"
 import prashanjeetProfile from "@/assets/prashanjeet-profile.jpg"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog"
+import allcertificatespratham from "@/assets/allcertificatespratham.pdf"
 
 export default function Profiles() {
   const [resumeUrl, setResumeUrl] = useState("")
+  // Add state for certifications dialog
+  const [certDialogOpen, setCertDialogOpen] = useState(false)
 
   const handleViewOnline = (url: string) => {
     if (!url || url === "#") {
@@ -40,6 +43,21 @@ export default function Profiles() {
           <div className="flex-grow">
             <iframe
               src={resumeUrl}
+              className="w-full h-full border-0"
+              allow="fullscreen"
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
+      {/* Certifications Fullscreen Dialog for Pratham */}
+      <Dialog open={certDialogOpen} onOpenChange={setCertDialogOpen}>
+        <DialogContent className="max-w-5xl w-full h-[90vh] p-0 flex flex-col">
+          <DialogHeader className="p-4 flex flex-row items-center justify-between border-b shrink-0">
+            <DialogTitle>Certifications - Pratham Debnath</DialogTitle>
+          </DialogHeader>
+          <div className="flex-grow">
+            <iframe
+              src={allcertificatespratham}
               className="w-full h-full border-0"
               allow="fullscreen"
             ></iframe>
@@ -124,6 +142,15 @@ export default function Profiles() {
                     {/* Resume Buttons */}
                     <div className="space-y-3">
                       <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full border-white/20 text-white hover:bg-white/10"
+                        onClick={() => handleViewOnline(prathamResumeUrl)}
+                      >
+                        <ExternalLink size={16} className="mr-2" />
+                        View Resume
+                      </Button>
+                      <Button 
                         variant="secondary" 
                         size="sm" 
                         className="w-full"
@@ -134,14 +161,17 @@ export default function Profiles() {
                           Download Resume
                         </a>
                       </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
+                      <Button
+                        variant="outline"
+                        size="sm"
                         className="w-full border-white/20 text-white hover:bg-white/10"
-                        onClick={() => handleViewOnline(prathamResumeUrl)}
+                        asChild
+                        onClick={() => setCertDialogOpen(true)}
                       >
-                        <ExternalLink size={16} className="mr-2" />
-                        View Online
+                        <a href="#">
+                          <Award size={16} className="mr-2" />
+                          View Certifications
+                        </a>
                       </Button>
                     </div>
                   </div>
@@ -318,6 +348,15 @@ export default function Profiles() {
                     {/* Resume Buttons */}
                     <div className="space-y-3">
                       <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full border-white/20 text-white hover:bg-white/10"
+                        onClick={() => handleViewOnline(prashanjeetResumeUrl)}
+                      >
+                        <ExternalLink size={16} className="mr-2" />
+                        View Resume
+                      </Button>
+                      <Button 
                         variant="secondary" 
                         size="sm" 
                         className="w-full"
@@ -328,14 +367,16 @@ export default function Profiles() {
                           Download Resume
                         </a>
                       </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
+                      <Button
+                        variant="outline"
+                        size="sm"
                         className="w-full border-white/20 text-white hover:bg-white/10"
-                        onClick={() => handleViewOnline(prashanjeetResumeUrl)}
+                        asChild
                       >
-                        <ExternalLink size={16} className="mr-2" />
-                        View Online
+                        <a href="#">
+                          <Award size={16} className="mr-2" />
+                          View Certifications
+                        </a>
                       </Button>
                     </div>
                   </div>

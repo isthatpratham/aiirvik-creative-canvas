@@ -63,7 +63,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © 2024 AiirVik. All rights reserved. Built with passion by Pratham Debnath & Prashanjeet Dutta.
+            © 2025 AiirVik. All rights reserved. Built with passion by Pratham Debnath.
           </p>
         </div>
       </div>

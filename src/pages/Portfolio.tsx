@@ -471,17 +471,19 @@ export default function Portfolio() {
                         <p className="text-muted-foreground text-sm">{project.description}</p>
                       </div>
 
-                      {/* Technologies */}
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm">Technologies:</h4>
-                        <div className="flex flex-wrap gap-1">
-                          {project.technologies.map((tech) => (
-                            <Badge key={tech} variant="outline" className="text-xs">
-                              {tech}
-                            </Badge>
-                          ))}
+                      {/* Technologies - Only for Web Development */}
+                      {project.category === "Web Development" && (
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-sm">Technologies:</h4>
+                          <div className="flex flex-wrap gap-1">
+                            {project.technologies.map((tech) => (
+                              <Badge key={tech} variant="outline" className="text-xs">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       {/* Author */}
                       <div className="pt-2 border-t border-border">
