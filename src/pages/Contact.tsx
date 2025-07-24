@@ -27,8 +27,8 @@ export default function Contact() {
     try {
       // EmailJS configuration (you'll need to set these up)
       await emailjs.send(
-        'service_o2tip0j', // Service ID
-        'template_l37bhxs', // Template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -36,7 +36,7 @@ export default function Contact() {
           project_type: formData.projectType,
           to_email: 'aiirvik2@gmail.com'
         },
-        'Lyj9Mme0K11QPQl5n' // Public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
 
       toast({

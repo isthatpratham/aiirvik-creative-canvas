@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { motion, AnimatePresence } from "framer-motion"
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/ThemeProvider"
 import logoWhite from "@/assets/aiirvik-logo-white.png"
 import logoBlack from "@/assets/aiirvik-logo-black.png"
 
@@ -36,7 +36,7 @@ export function Header() {
               <img 
                 src={theme === 'dark' ? logoWhite : logoBlack}
                 alt="AiirVik Logo"
-                className="h-8 w-auto"
+                className="h-28 w-auto md:h-40 transition-all duration-300"
               />
             </motion.div>
           </Link>

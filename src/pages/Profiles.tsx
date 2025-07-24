@@ -8,11 +8,14 @@ import prathamProfile from "@/assets/pratham-profile.jpg"
 import prashanjeetProfile from "@/assets/prashanjeet-profile.jpg"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog"
 import allcertificatespratham from "@/assets/allcertificatespratham.pdf"
+import allcertificatesprashanjeet from "@/assets/allcertificatesprashanjeet.pdf"
 
 export default function Profiles() {
   const [resumeUrl, setResumeUrl] = useState("")
   // Add state for certifications dialog
   const [certDialogOpen, setCertDialogOpen] = useState(false)
+  // Add state for Prashanjeet's certifications dialog
+  const [certDialogOpenPrashanjeet, setCertDialogOpenPrashanjeet] = useState(false)
 
   const handleViewOnline = (url: string) => {
     if (!url || url === "#") {
@@ -58,6 +61,21 @@ export default function Profiles() {
           <div className="flex-grow">
             <iframe
               src={allcertificatespratham}
+              className="w-full h-full border-0"
+              allow="fullscreen"
+            ></iframe>
+          </div>
+        </DialogContent>
+      </Dialog>
+      {/* Certifications Fullscreen Dialog for Prashanjeet */}
+      <Dialog open={certDialogOpenPrashanjeet} onOpenChange={setCertDialogOpenPrashanjeet}>
+        <DialogContent className="max-w-5xl w-full h-[90vh] p-0 flex flex-col">
+          <DialogHeader className="p-4 flex flex-row items-center justify-between border-b shrink-0">
+            <DialogTitle>Certifications - Prashanjeet Dutta</DialogTitle>
+          </DialogHeader>
+          <div className="flex-grow">
+            <iframe
+              src={allcertificatesprashanjeet}
               className="w-full h-full border-0"
               allow="fullscreen"
             ></iframe>
@@ -372,6 +390,7 @@ export default function Profiles() {
                         size="sm"
                         className="w-full border-white/20 text-white hover:bg-white/10"
                         asChild
+                        onClick={() => setCertDialogOpenPrashanjeet(true)}
                       >
                         <a href="#">
                           <Award size={16} className="mr-2" />
