@@ -93,3 +93,4 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 
 This project is currently **private** and not open for redistribution.  
 It may be published under a license in the future after development is complete.
+# Triggered redeploy manually
