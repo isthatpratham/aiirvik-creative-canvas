@@ -183,13 +183,10 @@ export default function Profiles() {
                         variant="outline"
                         size="sm"
                         className="w-full border-white/20 text-white hover:bg-white/10"
-                        asChild
                         onClick={() => setCertDialogOpen(true)}
                       >
-                        <a href="#">
-                          <Award size={16} className="mr-2" />
-                          View Certifications
-                        </a>
+                        <Award size={16} className="mr-2" />
+                        View Certifications
                       </Button>
                     </div>
                   </div>
@@ -389,13 +386,10 @@ export default function Profiles() {
                         variant="outline"
                         size="sm"
                         className="w-full border-white/20 text-white hover:bg-white/10"
-                        asChild
                         onClick={() => setCertDialogOpenPrashanjeet(true)}
                       >
-                        <a href="#">
-                          <Award size={16} className="mr-2" />
-                          View Certifications
-                        </a>
+                        <Award size={16} className="mr-2" />
+                        View Certifications
                       </Button>
                     </div>
                   </div>
